@@ -1,0 +1,263 @@
+import time
+import random
+import os
+
+phealth = 100
+previousplayers = 99
+inv = ["Apple","Apple","Apple","Axe"]
+invall = ["Apple"]
+invheal = [30]
+
+def titlescreen():
+    print("==========================================================================")
+    print("""
+             ______                  _     ______                  
+             |  ____|                | |   |  ____|               _ 
+             | |__ ___  _ __ ___  ___| |_  | |__ _   _ _ __ _   _(_)
+             |  __/ _ \| '__/ _ \/ __| __| |  __| | | | '__| | | |  
+             | | | (_) | | |  __/\__ \ |_  | |  | |_| | |  | |_| |_ 
+             |_|  \___/|_|  \___||___/\__| |_|   \__,_|_|   \__, (_)
+                                                             __/ |  
+                                                            |___/  
+      ____           _       _           _               _____    _            
+     |  _ \ ___  ___| | __ _(_)_ __ ___ (_)_ __   __ _  | ____|__| | ___ _ __  
+     | |_) / _ \/ __| |/ _` | | '_ ` _ \| | '_ \ / _` | |  _| / _` |/ _ \ '_ \ 
+     |  _ <  __/ (__| | (_| | | | | | | | | | | | (_| | | |__| (_| |  __/ | | |
+     |_| \_\___|\___|_|\__,_|_|_| |_| |_|_|_| |_|\__, | |_____\__,_|\___|_| |_|
+                                                 |___/                         
+
+    """)
+    print("==========================================================================")
+    
+def gameover():
+    print("You have been defeated by Deforestation!")
+    breakk()
+    time.sleep(2)
+    print("Although you couldn't beat deforestation on your own, you've proved that through the power of teamwork that we can all help to protect our rainforest")
+    time.sleep(5)
+    breakk()
+                                                                                    ## DEFINE KILLS AND TOTALKILLS
+                                                                                    ## focus on the wording here its important
+    print("You extinguished 3 machines before being defeated, however you contributed to the now total of 512 vehicles by all players!")
+    print("Good work Eco-Warrior")
+
+def breakk():
+    print("")
+    
+def printinv():
+    print("The items in your bag are:")
+    breakk()
+    time.sleep(2)
+    for i in inv:
+        print(i)
+    
+def start():
+    global titlescreen
+    titlescreen()
+    time.sleep(1)
+    print("Welcome Eco-warrior!")
+    breakk()
+    time.sleep(1)
+    print("You are player number",previousplayers,"!")
+    time.sleep(1)
+    print("You have the support of",(previousplayers-1),"previous players behind you !")
+
+start()
+
+time.sleep(2)
+breakk()
+abc = input("Say continue to proceed")
+if abc == "kill":
+    os.system('cls')
+    gameover()
+    input()
+breakk()
+time.sleep(1)
+
+print("Your mission is as follows:")
+breakk()
+time.sleep(2)
+print("Gather tools and reasources to destory the bulldozers and killing machines responsible for deforestation")
+breakk()
+time.sleep(5)
+print("At the rate trees are being chopped down, it is estimated that there will be no rainforests left in 100 years!")
+print("Destroying the habitats of over 30 million species of animal and plant")
+breakk()
+time.sleep(5)
+print("It's up to you to do something, good luck Ecowarrior!")
+time.sleep(2)
+
+breakk()
+input("Say continue to proceed")
+breakk()
+time.sleep(1)
+
+movelist = ["Axe_slash","Dirt_toss"]
+dmglist = [40,0]
+effectlist = ["0","1"]    #0=no effect  1=blind
+
+def printmove():
+    print("Your abilites are:")
+    time.sleep(2)
+    breakk()
+    for i in movelist:
+        print(i)
+
+printmove()
+breakk()
+time.sleep(3)
+printinv()
+time.sleep(3)
+breakk()
+
+
+
+##==============================================================================================================================================
+
+def battle1begin():
+    global phealth
+    os.system('cls')
+    turndmg = 0
+    correctmove = 0
+    healamount = 0
+    correctitem = 0
+    eligableitems = ["Apple"]
+    misschance=0
+    bosshealth = 100
+    bossdmg = 20
+    bosseffects = []
+    print("Watch out!! here comes one of the machines!!!")
+    time.sleep(1)
+    print("""
+          ...................                                          
+        .:-:..:::::::....:-:              @#*%                        
+        -%*%%%%%%%%%%%%%%%*%-            %%@@@                        
+        .#:%#%@*=+@#-@%##%=+=+          @#@@                          
+        .#:%##%@==@@+=@%#%%-**          @%@@                          
+        .#:%###@@-=@@=#@###*=#*         @@@                           
+        -#-%%%%%%%#*%%+%%%%%=#*.........@@@...........                
+    ....-%*=::::-===-------=+#%-=+=----::.::----++---:.               
+    .*+-*%##%%%%##############%-=+%#############+-++==.    ...        
+    .#+-#%####################%-=+--===========-==++++.    .%-.       
+    .#+-#%####################%-=++%%%%%%%%%%%%%+=++++.    .#-.       
+    .#+-#%####################%-=+*%%%%%%%%%%%%%*-.....@%#@.#-.       
+    .#+-#%####################%-=+=---------:.....@@@@@@## .#-.       
+    .#+-#%####################%-=++++:.....:@@@@@@@+...    .%=:.      
+    .*+-++....................-.......@@@@@@@......:-+.    .%=+.      
+    .*=..*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@:..=.    .%=+:.     
+    ...@@@@@@@@@@...........................@@@@@@@@...    .#=++:.    
+      @@@@@@@@@@@.-------------------**--+=.@@@@@@@@@@@@##@.#=+++:.   
+      @@@@@@@@@@%.*#################******-.@@@@@@@@@@####@.#-===-:.  
+      @@@@@@@@@@@..........................=@@@@@@@@@@     .*######-..
+       @%%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%@      ...........
+        @@%%%%@@@@%%%%@@@%%%%%@@%%%%@@@%%%%%@@%%%%@                   
+    """)
+    z=0
+    while z==0:
+        if bosshealth >0 and phealth >0:
+            breakk()
+            while correctmove == 0:
+                print("Choose your action!")
+                print("Attack")
+                print("Bag")
+                
+                move = input()
+                if move == "attack" or move == "Attack":
+                    correctmove = 1
+                    breakk()
+                    printmove()
+                    breakk()
+                    x=0
+                    while x==0:
+                        print("Choose your move")
+                        ans = input()
+                        breakk()
+                        if ans in movelist:
+                            x=1
+                            num=movelist.index(ans)
+                            if dmglist[num]>0:
+                                turndmg=(dmglist[num]+random.randint(-5,5))
+                                ##print(turndmg)
+                                if turndmg > dmglist[num]:
+                                    print("Critical hit!")
+                                    print("You dealt",turndmg,"damage to the machine!")
+                                else:
+                                    print("You dealt",turndmg,"damage to the machine!")
+                            ##print(effectlist[num])
+                            if effectlist[num] != "0":
+                                ##print(effectlist[num])
+                                if effectlist[num] == "1":
+                                    ##print(effectlist[num])
+                                    print("You toss a handful of dirt into the driver's eyes!")
+                                    misschance = 60
+                            ##print("You dealt",turndmg,"damage to the machine!")
+                            breakk()
+                            ##print(bosshealth)
+                            bosshealth = bosshealth-(turndmg)
+                            bosseffects.append(effectlist[num])
+                            ##print(bosseffects)
+                            ##print(bosshealth)
+                            
+                    
+                elif move =="bag" or move =="Bag":
+                    correctitem = 0
+                    correctmove = 1
+                    breakk()
+                    printinv()
+                    breakk()
+                    while correctitem == 0:
+                        print("Which item would you like to use?")
+                        ans = input()
+                        breakk()
+                        if ans in eligableitems:
+                            print("That item is eligable")
+                            if ans in inv:
+                                inv.remove(ans)
+                                print("You have used an ",ans)
+                                breakk()
+                                correctitem = 1
+                                num = invall.index(ans)
+                                healamount = invheal[num]
+                                if healamount > 0:
+                                    print("The ",ans," has healed you for ",healamount)
+                                    phealth = phealth + healamount
+                                    print("You now have ", phealth," health")
+                                breakk()
+                            else:
+                                print("You dont have any of those")
+                        elif ans == "back" or ans == "Back":
+                            correctmove = 0
+                            correctitem = 1
+                        elif ans not in eligableitems:
+                            print("That item is not eligable in this fight")
+                                
+
+            ##boss attack
+            print("It's the enemies turn!")
+            if "1" in bosseffects:
+                print("The driver has dirt in their eyes!")
+            hitroll = random.randint(1,100)
+            ##print (hitroll)
+            if hitroll < misschance:
+                print("The driver couldn't see and missed their attack!")
+            else:
+                turndmg=(bossdmg+random.randint(-5,5))
+                if turndmg > bossdmg:
+                    print("Critical hit!")
+                print("The machine dealt",turndmg,"damage to the you!")
+                phealth = (phealth-turndmg)
+                print("You have",phealth,"hp remaining")
+            correctmove = 0
+                
+                
+                
+                
+                
+
+
+
+
+        else:
+            z=1
+battle1begin()
+
